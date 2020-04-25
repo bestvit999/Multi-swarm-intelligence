@@ -1,3 +1,5 @@
+REM argv => testFunction; dimension; iteration; runs;
+
 REM ackley
 python .\cs.py ackley 2 5000 30
 python .\cs.py ackley 10 5000 30

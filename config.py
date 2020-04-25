@@ -11,7 +11,24 @@ class Config:
     __Trial = 31
     __Iteration = 3000
     __Test_fn = 'ackley'
+    __Pa_max = 0.5
+    __Pa_min = 0.05
+    __Step_Size_max = 0.5
+    __Step_Size_min = 0.005
 
+    @classmethod
+    def get_dynamic_pa(cls, current_iter):
+        """ Pa_iter = Pa_max - (current_iter / total_iter) * (Pa_max - Pa_min) """
+        return cls.__Pa_max - (current_iter / cls.__Iteration) * (cls.__Pa_max - cls.__Pa_min)
+    
+    @classmethod
+    def get_dynamic_step_size(cls, current_iter):
+        """
+        Step_Size_iter = Step_Size_max * exp(c * current_iter)
+        c = (1 / total_iter) * ln(Step_Size_min / Step_Size_max)
+        """
+        c = (1 / cls.__Iteration) * np.log(cls.__Step_Size_min / cls.__Step_Size_max)
+        return cls.__Step_Size_max * np.exp(c * current_iter)
     
     @classmethod
     def get_test_fn(cls):

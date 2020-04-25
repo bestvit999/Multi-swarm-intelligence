@@ -40,9 +40,30 @@ class Individual:
             if p < cf.get_Pa():
                 self.__position[i] = np.random.rand() * (cf.get_max_domain() - cf.get_min_domain())  + cf.get_min_domain()
 
+    def abandon_dynamic(self, current_iter):
+        # abandon some variables
+        for i in range(len(self.__position)):
+            p = np.random.rand()
+            if p < cf.get_dynamic_pa(current_iter):
+                self.__position[i] = np.random.rand() * (cf.get_max_domain() - cf.get_min_domain())  + cf.get_min_domain()
+
     def get_cuckoo(self):
 
         step_size = cf.get_stepsize() * levy_flight(cf.get_lambda())
+
+        # Update position
+        self.__position = self.__position + step_size
+
+        # Simple Boundary Rule
+        for i in range(len(self.__position)):
+            if self.__position[i] > cf.get_max_domain():
+                self.__position[i] = cf.get_max_domain()
+            if self.__position[i] < cf.get_min_domain():
+                self.__position[i] = cf.get_min_domain()
+
+    def get_cuckoo_dynamic(self, current_iter):
+
+        step_size = cf.get_dynamic_step_size(current_iter) * levy_flight(cf.get_lambda())
 
         # Update position
         self.__position = self.__position + step_size

@@ -17,12 +17,11 @@ cf.set_dimension(dimension)
 cf.set_iteration(iterations)
 cf.set_trial(trials)
 
-
-if os.path.exists('results/cs/{}-{}'.format(test_fn, dimension)):
-    result = open('results/cs/{}-{}/avg-of-{}-trial.txt'.format(test_fn, dimension, trials), 'w+')
+if os.path.exists('results/ics/{}-{}'.format(test_fn, dimension)):
+    result = open('results/ics/{}-{}/avg-of-{}-trial.txt'.format(test_fn, dimension, trials), 'w+')
 else:
-    os.makedirs('results/cs/{}-{}'.format(test_fn, dimension))
-    result = open('results/cs/{}-{}/avg-of-{}-trial.txt'.format(test_fn, dimension, trials), 'w+')
+    os.makedirs('results/ics/{}-{}'.format(test_fn, dimension))
+    result = open('results/ics/{}-{}/avg-of-{}-trial.txt'.format(test_fn, dimension, trials), 'w+')
 
 def main():
     for trial in range(cf.get_trial()):
@@ -46,7 +45,7 @@ def main():
 
             """Generate New Solutions"""
             for i in range(len(cs_list)):
-                cs_list[i].get_cuckoo()
+                cs_list[i].get_cuckoo_dynamic(iteration)
                 cs_list[i].move(BestPosition)
                 cs_list[i].set_fitness(fn.calculation(cs_list[i].get_position(),iteration))
 
@@ -66,8 +65,8 @@ def main():
             """Abandon Solutions (exclude the best)"""
             for a in range(1,len(cs_list)):
                 r = np.random.rand()
-                if(r < cf.get_Pa()):
-                    cs_list[a].abandon()
+                if(r < cf.get_dynamic_pa(iteration)):
+                    cs_list[a].abandon_dynamic(iteration)
                     cs_list[a].set_fitness(fn.calculation(cs_list[a].get_position(),iteration))
 
             """Sort to Find the Best"""
