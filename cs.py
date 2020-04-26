@@ -25,10 +25,10 @@ else:
     result = open('results/cs/{}-{}/avg-of-{}-trial.txt'.format(test_fn, dimension, trials), 'w+')
 
 def main():
+    result_list = np.zeros(cf.get_iteration())
     for trial in range(cf.get_trial()):
         np.random.seed(trial)
         
-        result_list = np.zeros(cf.get_iteration())
         cs_list = []
         """Generate Initial Population"""
         for p in range(cf.get_population_size()):
@@ -47,7 +47,7 @@ def main():
             """Generate New Solutions"""
             for i in range(len(cs_list)):
                 cs_list[i].get_cuckoo()
-                cs_list[i].move(BestPosition)
+                # cs_list[i].move(BestPosition)
                 cs_list[i].set_fitness(fn.calculation(cs_list[i].get_position(),iteration))
 
                 """random choice (say j)"""

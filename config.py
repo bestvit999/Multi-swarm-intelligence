@@ -5,16 +5,16 @@ class Config:
     __MaxDomain = -40 # variable upper limit
     __MinDomain = 40 # variable lower limit
     __Lambda = 1.5 # parameter for Levy flight
-    __Pa = 0.25
-    __Step_Size = 0.01
+    __Pa = 0.1
+    __Step_Size = 0.5
     __Dimension = 2 # The number of dimension
     __Trial = 31
-    __Iteration = 3000
+    __Iteration = 5000
     __Test_fn = 'ackley'
-    __Pa_max = 0.5
+    __Pa_max = 0.2
     __Pa_min = 0.05
-    __Step_Size_max = 0.5
-    __Step_Size_min = 0.005
+    __Step_Size_max = 1.0
+    __Step_Size_min = 0.25
 
     @classmethod
     def get_dynamic_pa(cls, current_iter):

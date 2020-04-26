@@ -25,10 +25,10 @@ else:
 
 
 def main():
+    result_list = np.zeros(cf.get_iteration())
     for trial in range(cf.get_trial()):
         np.random.seed(trial)
 
-        result_list = np.zeros(cf.get_iteration())
         pos_list = []
         v_list = []
         pbest_list = []
@@ -47,7 +47,8 @@ def main():
             """ Update Partical position """
             for i in range(cf.get_population_size()):
                 # move to new position
-                pos_list[i].get_newPos(v_list[i], pbest_list[i], gbest)
+                v_list[i].get_velocity(pos_list[i], pbest_list[i], gbest)
+                pos_list[i].get_newPos(v_list[i])
 
                 # update fitness
                 fitness = fn.calculation(pos_list[i].get_position(), 0)

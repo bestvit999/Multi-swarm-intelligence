@@ -78,19 +78,18 @@ class Individual:
     def move(self, target):
         self.__position = self.__position + np.random.rand() * (target - self.__position)
 
-    def get_velocity(self, v_old, p_best, g_best):
+    def get_velocity(self, x_old, p_best, g_best):
         """ v_new = w * v_old + r1 * rho1 * (pb - x_old) + r2 * rho2 * (gb - x_old) """
-        w = 0.25
-        rho1 = 0.25
-        rho2 = 0.25
+        w = .25
+        rho1 = .25
+        rho2 = .25
         r1 = random.random()
         r2 = random.random()
-        v_new = w * v_old.get_position() + r1 * rho2 * (p_best.get_position() - self.__position) + r2 * rho2 * (g_best.get_position() - self.__position)
-        return v_new
+        self.__position = w * self.get_position() + r1 * rho2 * (p_best.get_position() - x_old.__position) + r2 * rho2 * (g_best.get_position() - x_old.__position)
 
-    def get_newPos(self, v_old, p_best, g_best):
-        pos_new = self.__position + self.get_velocity(v_old, p_best, g_best)
-        self.__position = pos_new
+    def get_newPos(self, v_new):
+        """ x_new = x_old + v_new """
+        self.__position = self.__position + v_new.get_position()
 
     def print_info(self,i):
         print("id:","{0:3d}".format(i),

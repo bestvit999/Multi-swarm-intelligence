@@ -24,10 +24,10 @@ else:
     result = open('results/ics/{}-{}/avg-of-{}-trial.txt'.format(test_fn, dimension, trials), 'w+')
 
 def main():
+    result_list = np.zeros(cf.get_iteration())
     for trial in range(cf.get_trial()):
         np.random.seed(trial)
         
-        result_list = np.zeros(cf.get_iteration())
         cs_list = []
         """Generate Initial Population"""
         for p in range(cf.get_population_size()):
