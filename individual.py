@@ -7,7 +7,7 @@ import random
 def levy_flight(Lambda):
     #generate step from levy distribution
     sigma1 = np.power((math.gamma(1 + Lambda) * np.sin((np.pi * Lambda) / 2)) \
-                      / math.gamma((1 + Lambda) / 2) * np.power(2, (Lambda - 1) / 2), 1 / Lambda)
+                      / math.gamma((1 + Lambda) / 2) * Lambda * np.power(2, (Lambda - 1) / 2), 1 / Lambda)
     sigma2 = 1
     u = np.random.normal(0, np.power(sigma1, 2), size=cf.get_dimension())
     v = np.random.normal(0, np.power(sigma2, 2), size=cf.get_dimension())
