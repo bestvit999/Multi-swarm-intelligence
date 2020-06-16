@@ -17,16 +17,34 @@ class Config:
     __Step_Size_min = 0.25
 
     @classmethod
+    def set_domain_bound(cls, test_fn):
+        if test_fn == 'rastrigin':
+            cls.set_min_domain(-5.12)
+            cls.set_max_domain(5.12)
+        elif test_fn == 'sphere':
+            cls.set_min_domain(-5.12)
+            cls.set_max_domain(5.12)
+        elif test_fn == 'rosenbrock':
+            cls.set_min_domain(-2.048)
+            cls.set_max_domain(2.048)
+        elif test_fn == 'michalewicz':
+            cls.set_min_domain(.0)
+            cls.set_max_domain(np.pi)
+        elif test_fn == 'ackley':
+            cls.set_min_domain(-32.768)
+            cls.set_max_domain(32.768)
+        else:
+            cls.set_min_domain(-40)
+            cls.set_max_domain(40)
+
+    @classmethod
     def get_dynamic_pa(cls, current_iter):
-        """ Pa_iter = Pa_max - (current_iter / total_iter) * (Pa_max - Pa_min) """
+        """ ICS """
         return cls.__Pa_max - (current_iter / cls.__Iteration) * (cls.__Pa_max - cls.__Pa_min)
     
     @classmethod
     def get_dynamic_step_size(cls, current_iter):
-        """
-        Step_Size_iter = Step_Size_max * exp(c * current_iter)
-        c = (1 / total_iter) * ln(Step_Size_min / Step_Size_max)
-        """
+        """ ICS """
         c = (1 / cls.__Iteration) * np.log(cls.__Step_Size_min / cls.__Step_Size_max)
         return cls.__Step_Size_max * np.exp(c * current_iter)
     
@@ -41,6 +59,10 @@ class Config:
     @classmethod
     def get_population_size(cls):
         return cls.__PopulationSize
+
+    @classmethod
+    def set_population_size(cls, pop_size):
+        cls.__PopulationSize = pop_size
 
     @classmethod
     def get_Pa(cls):
@@ -97,24 +119,3 @@ class Config:
     @classmethod
     def get_stepsize(cls):
         return cls.__Step_Size
-
-    @classmethod
-    def setting_domain_bound(cls, test_fn):
-        if test_fn == 'rastrigin':
-            cls.set_min_domain(-5.12)
-            cls.set_max_domain(5.12)
-        elif test_fn == 'sphere':
-            cls.set_min_domain(-5.12)
-            cls.set_max_domain(5.12)
-        elif test_fn == 'rosenbrock':
-            cls.set_min_domain(-5.0)
-            cls.set_max_domain(10.0)
-        elif test_fn == 'michalewicz':
-            cls.set_min_domain(.0)
-            cls.set_max_domain(np.pi)
-        elif test_fn == 'ackley':
-            cls.set_min_domain(-32.768)
-            cls.set_max_domain(32.768)
-        else:
-            cls.set_min_domain(-40)
-            cls.set_max_domain(40)

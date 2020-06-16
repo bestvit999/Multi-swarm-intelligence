@@ -6,8 +6,7 @@ from config import Config as cf
 https://www.sfu.ca/~ssurjano/index.html
 """
 
-
-def calculation(array, t):#as you want
+def calculation(array):#as you want
     test_fn = cf.get_test_fn()
     if test_fn == 'rastrigin':
         return rastrigin(array)
@@ -38,7 +37,7 @@ def rosenbrock(array):
     fitness = 0
     d = len(array)
     for i in range(d-1):
-        fitness += 100 * pow(array[i+1] - pow(array[i],2), 2) + pow(array[i] - 1, 2)
+        fitness += 100 * np.power(array[i+1] - np.power(array[i],2), 2) + np.power(array[i] - 1, 2)
     return fitness
     
 def eggholder(array):
@@ -68,12 +67,11 @@ def schwefel(array):
     return fitness
 
 def michalewicz(array):#for the number of Dimension is 2
-    fitness = 0
-    m = 10
-    for (i,x) in enumerate(array, start=1):
-        fitness += np.sin(x) * pow(np.sin(x), 2*m) * (i * pow(x, 2)) / np.pi
-    return -fitness
+    ans = 0
+    for i, x in enumerate(array):
+        ans -= np.sin(x) * np.power(np.sin(((i + 1) * x ** 2) / np.pi), 20)
+    return ans
 
 if __name__ == '__main__':
-    a = np.array([2.00, 1.57])
+    a = np.array([2.20, 1.57,])
     print (michalewicz(a))
