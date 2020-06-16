@@ -8,8 +8,8 @@ import sys
 """ argv """
 
 """ config """
-cf.set_domain_bound('rastrigin')
-cf.set_test_fn('rastrigin')
+cf.set_domain_bound('ackley')
+cf.set_test_fn('ackley')
 cf.set_dimension(30)
 cf.set_iteration(5000)
 cf.set_population_size(50)
