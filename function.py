@@ -22,8 +22,8 @@ def calculation(array, t):#as you want
         return schwefel(array)
     elif test_fn == 'griewank':
         return griewank(array)
-    elif test_fn == 'sharffer':
-        return sharffer(array)
+    elif test_fn == 'scharffer':
+        return scharffer(array)
     elif test_fn == 'bohachevsky':
         return bohachevsky(array)
     elif test_fn == 'sumSquares':
@@ -102,12 +102,12 @@ def griewank(array):
 		part2 *= np.cos(float(array[i]) / np.sqrt(i+1))
 	return 1 + (float(part1)/4000.0) - float(part2)
 
-def sharffer(array):
+def scharffer(array):
     if len(array) != 2:
         print('error: sharffer function only 2d')
         exit()
     top = np.sin(array[0] ** 2 - array[1] ** 2) ** 2 - 0.5
-    down = (1 + 0.001 * (array[0] ** 2 - array[1] ** 2)) ** 2
+    down = (1 + 0.001 * (array[0] ** 2 + array[1] ** 2)) ** 2
     return 0.5 + top / down
 
 def bohachevsky(array):

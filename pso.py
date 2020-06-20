@@ -65,7 +65,7 @@ def main():
                 
             # print([x.get_fitness() for x in pbest_list])
             # print(gbest.get_fitness())
-            sys.stdout.write("\r Trial:%3d , Iteration:%7d, BestFitness:%.10f" % (trial , iteration, gbest.get_fitness()))
+            # sys.stdout.write("\r Trial:%3d , Iteration:%7d, BestFitness:%.10f" % (trial , iteration, gbest.get_fitness()))
             result_list[iteration] += gbest.get_fitness()
     
     """ export avg result"""

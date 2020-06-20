@@ -129,10 +129,18 @@ class Individual:
         r1 = random.random()
         r2 = random.random()
         self.__position = w * self.get_position() + r1 * rho2 * (p_best.get_position() - x_old.__position) + r2 * rho2 * (g_best.get_position() - x_old.__position)
-
+        
+        
     def get_newPos(self, v_new):
         """ x_new = x_old + v_new """
         self.__position = self.__position + v_new.get_position()
+        
+        # Simple Boundary Rule
+        for i in range(len(self.__position)):
+            if self.__position[i] > cf.get_max_domain():
+                self.__position[i] = cf.get_max_domain()
+            if self.__position[i] < cf.get_min_domain():
+                self.__position[i] = cf.get_min_domain()
 
     def print_info(self,i):
         print("id:","{0:3d}".format(i),

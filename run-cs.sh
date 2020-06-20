@@ -42,7 +42,7 @@ python cs.py griewank 20 5000 30
 python cs.py griewank 30 5000 30
 
 # test_fn, dimension, iteration, trials
-python cs.py sharffer 2 5000 30
+python cs.py scharffer 2 5000 30
 
 # test_fn, dimension, iteration, trials
 python cs.py bohachevsky 2 5000 30

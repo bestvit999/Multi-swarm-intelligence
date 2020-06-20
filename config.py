@@ -132,7 +132,7 @@ class Config:
         elif test_fn == 'griewank':
             cls.set_min_domain(-600)
             cls.set_max_domain(600)
-        elif test_fn == 'sharffer':
+        elif test_fn == 'scharffer':
             cls.set_min_domain(-100)
             cls.set_max_domain(100)
         elif test_fn == 'bohachevsky':
