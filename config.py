@@ -5,7 +5,7 @@ class Config:
     __MaxDomain = -40 # variable upper limit
     __MinDomain = 40 # variable lower limit
     __Lambda = 1.5 # parameter for Levy flight
-    __Lmabda_max = 1.99
+    __Lmabda_max = 2.0
     __Lmabda_min = 1.0
     __Pa = 0.1
     __Step_Size = 0.5
@@ -127,17 +127,17 @@ class Config:
             cls.set_min_domain(-32.768)
             cls.set_max_domain(32.768)
         elif test_fn == 'schwefel':
-            cls.set_min_domain(-500)
-            cls.set_max_domain(500)
+            cls.set_min_domain(-10)
+            cls.set_max_domain(10)
         elif test_fn == 'griewank':
-            cls.set_min_domain(-600)
-            cls.set_max_domain(600)
+            cls.set_min_domain(-100)
+            cls.set_max_domain(100)
         elif test_fn == 'scharffer':
             cls.set_min_domain(-100)
             cls.set_max_domain(100)
         elif test_fn == 'bohachevsky':
-            cls.set_min_domain(-100)
-            cls.set_max_domain(100)
+            cls.set_min_domain(-50)
+            cls.set_max_domain(50)
         elif test_fn == 'sumSquares':
             cls.set_min_domain(-5.12)
             cls.set_max_domain(5.12)

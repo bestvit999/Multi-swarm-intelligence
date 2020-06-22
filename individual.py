@@ -109,7 +109,7 @@ class Individual:
 
         # Update position with momentum
         beta = 0.9
-        self.__position = beta * self.__position + (1 - beta) * (self.__position + step_size / (vr_sqrt + 1e-07))
+        self.__position = beta * self.__position + (1 - beta) * (self.__position + step_size / (vr_sqrt + 1e-03))
 
         # Simple Boundary Rule
         for i in range(len(self.__position)):

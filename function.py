@@ -79,12 +79,21 @@ def rastrigin(array):
     fitness = 10.0 * len(array) + sum
     return fitness
 
+# def schwefel(array):
+#     sum = 0
+#     fitness = 0
+#     for x in array:
+#         sum = sum + x * np.sin(np.sqrt(np.abs(x)))
+#     fitness = 418.9829 * len(array) - sum
+#     return fitness
+
 def schwefel(array):
-    sum = 0
     fitness = 0
-    for x in array:
-        sum = sum + x * np.sin(np.sqrt(np.abs(x)))
-    fitness = 418.9829 * len(array) - sum
+    for i in range(len(array)):
+        sum = 0
+        for j in range(i):
+            sum += array[j]
+        fitness += sum ** 2
     return fitness
 
 def michalewicz(array):#for the number of Dimension is 2
@@ -175,5 +184,5 @@ def powell(array):
     return ans
 
 if __name__ == '__main__':
-    a = np.array([0., 0., 0., 0., 0.,]).astype('float32')
-    print(powell(a))
+    a = np.array([0., 0., 500., 0., 0.,]).astype('float32')
+    print(schwefel_test(a))

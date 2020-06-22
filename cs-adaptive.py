@@ -27,7 +27,8 @@ else:
 def main():
     result_list = np.zeros(cf.get_iteration())
     for trial in range(cf.get_trial()):
-        np.random.seed(trial)
+        # np.random.seed(trial)
+        np.random.seed()
         
         cs_list = []
         """Generate Initial Population"""

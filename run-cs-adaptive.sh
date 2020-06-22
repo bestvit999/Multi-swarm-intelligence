@@ -4,7 +4,7 @@ python cs-adaptive.py ackley 10 5000 30
 python cs-adaptive.py ackley 20 5000 30
 python cs-adaptive.py ackley 30 5000 30
 
-test_fn, dimension, iteration, trials
+# test_fn, dimension, iteration, trials
 python cs-adaptive.py michalewicz 2 5000 30
 python cs-adaptive.py michalewicz 10 5000 30
 python cs-adaptive.py michalewicz 20 5000 30
